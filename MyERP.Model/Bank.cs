@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyERP.Model
 {
-   public class Bank
+   public class Bank:BaseEntity
     {
         public string Name { get; set; }
         public string Address { get; set; }

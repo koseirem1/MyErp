@@ -18,8 +18,8 @@ namespace MyERP.Model
         public virtual City City { get; set; }
         public string Account { get; set; }
 
-        public decimal OpenBalance { get; set; }
-        public decimal CloseBalance { get; set; }
+        public decimal? OpenBalance { get; set; }
+        public decimal? CloseBalance { get; set; }
 
         public virtual ICollection<Receipt> Receipts { get; set; }
 

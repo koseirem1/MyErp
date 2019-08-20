@@ -14,7 +14,7 @@ namespace MyERP.Model
         public Guid BankId { get; set; }
         public virtual Bank Bank { get; set; }
         public decimal ReceivedAmount { get; set; } 
-        public decimal BalAmount { get; set; } //kalan miktar + veya - olabilir.Balance Amount
+        public decimal BalAmount { get; set; } //kalan miktar + veya - olabilir.Balance Amount.(bakiye miktarı)
 
     }
 }

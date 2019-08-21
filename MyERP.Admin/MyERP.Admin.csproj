@@ -192,8 +192,12 @@
     <Compile Include="Models\CityViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
+    <Compile Include="Models\InvoiceViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\QuotationViewModel.cs" />
+    <Compile Include="Models\ReceiptViewModel.cs" />
     <Compile Include="Models\SupplierViewModel.cs" />
     <Compile Include="Models\TaxViewModel.cs" />
     <Compile Include="Models\WarehouseViewModel.cs" />

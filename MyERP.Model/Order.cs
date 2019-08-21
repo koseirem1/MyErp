@@ -11,7 +11,7 @@ namespace MyERP.Model
         public Guid CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
 
-        public DateTime Validity { get; set; }
+        public DateTime? Validity { get; set; }
 
         public string Created { get; set; }
 
@@ -19,12 +19,12 @@ namespace MyERP.Model
         public virtual Product Product { get; set; }
         public string Description { get; set; }
         public decimal UnitPrice { get; set; }
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
         public Guid? TaxId { get; set; }
         public virtual Tax Tax { get; set; }
 
-        public decimal Subtotal { get; set; }
-        public decimal GrandTotal { get; set; }
+        public decimal? Subtotal { get; set; }
+        public decimal? GrandTotal { get; set; }
     }
 }

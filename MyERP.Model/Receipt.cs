@@ -10,11 +10,11 @@ namespace MyERP.Model
     {
         public Guid CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
-        public decimal UnitPrice { get; set; }
-        public Guid BankId { get; set; }
+        public decimal? UnitPrice { get; set; }
+        public Guid? BankId { get; set; }
         public virtual Bank Bank { get; set; }
-        public decimal ReceivedAmount { get; set; } 
-        public decimal BalAmount { get; set; } //kalan miktar + veya - olabilir.Balance Amount.(bakiye miktarı)
+        public decimal? ReceivedAmount { get; set; } 
+        public decimal? BalAmount { get; set; } //kalan miktar + veya - olabilir.Balance Amount.(bakiye miktarı)
 
     }
 }

@@ -13,7 +13,7 @@ namespace MyERP.Model
 
         public string Address { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public string InvoiceAddress { get; set; } //fatura adresi
 
@@ -24,8 +24,8 @@ namespace MyERP.Model
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
-        public int Quantity { get; set; }
+        public decimal UnitPrice { get; set; }
+        public int? Quantity { get; set; }
 
         public Guid? TaxId { get; set; }
         public virtual Tax Tax { get; set; }

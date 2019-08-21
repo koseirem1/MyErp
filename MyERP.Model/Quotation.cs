@@ -13,7 +13,7 @@ namespace MyERP.Model
 
         public string Address { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public string RefText { get; set; } //reference text
 
@@ -25,13 +25,13 @@ namespace MyERP.Model
         public virtual Product Product { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
         public Guid? TaxId { get; set; }
         public virtual Tax Tax { get; set; }
 
-        public decimal Subtotal { get; set; }
-        public decimal GrandTotal { get; set; }
+        public decimal? Subtotal { get; set; }
+        public decimal? GrandTotal { get; set; }
 
     }
 }

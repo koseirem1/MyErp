@@ -18,7 +18,7 @@ namespace MyERP.Admin.Models
         [MaxLength(50)]
         [Display(Name = "Soyad")]
         public string LastName { get; set; }
-        [MaxLength(100)]
+       
         [Display(Name = "Tam Ad")]
         public string FullName { get { return FirstName + " " + LastName; } }
         [MaxLength(20)]
@@ -57,7 +57,7 @@ namespace MyERP.Admin.Models
         [Display(Name = "Şehir")]
         public Guid? CityId { get; set; }
         public virtual City City { get; set; }
-
+        [MaxLength(200)]
         [Display(Name = "Fotoğraf")]
         public string Photo { get; set; }
 

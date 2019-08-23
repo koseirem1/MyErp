@@ -14,6 +14,7 @@ namespace MyERP.Admin.Models
         [MaxLength(50)]
         [Display(Name = "Şehir Adı")]
         public string Name { get; set; }
+        [Required]
         [Display(Name = "Ülke")]
         public Guid CountryId { get; set; }
         public virtual Country Country { get; set; }

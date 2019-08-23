@@ -27,8 +27,10 @@ namespace MyERP.Model
 
         public Guid? CityId { get; set; }
         public virtual City City { get; set; }
-
+        public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Quotation> Quotations { get; set; }
+        public virtual ICollection<Receipt> Receipts { get; set; }
 
     }
 }

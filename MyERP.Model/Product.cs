@@ -16,5 +16,8 @@ namespace MyERP.Model
         public bool NotCanBePurchased { get; set; }
         public bool NotCanBeSold { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+
+        public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual ICollection<Quotation> Quotations { get; set; }
     }
 }

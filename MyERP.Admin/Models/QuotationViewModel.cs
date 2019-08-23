@@ -28,7 +28,6 @@ namespace MyERP.Admin.Models
         [MaxLength(4000)]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Referans Metni")]
-
         public string RefText { get; set; } //reference text
         [MaxLength(100)]
         [Display(Name = "Oluşturan Kişi")]

@@ -13,5 +13,7 @@ namespace MyERP.Model
         public decimal Percent { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual ICollection<Quotation> Quotations { get; set; }
     }
 }

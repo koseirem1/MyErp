@@ -33,11 +33,13 @@ namespace MyERP.Admin.Models
         [Required]
         [Display(Name = "Cep Telefonu")]
         public string MobilePhone { get; set; }
+
         [Required]
         [MaxLength(100)]
         [Display(Name = "Ürün Adı")]
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; }
+
         [MaxLength(4000)]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Ürün Açıklaması")]
@@ -47,6 +49,7 @@ namespace MyERP.Admin.Models
         public decimal UnitPrice { get; set; }
         [Display(Name = "Ürün Adedi ")]
         public int? Quantity { get; set; }
+
         [Display(Name = "Ürün Vergisi")]
         [MaxLength(20)]
         public Guid? TaxId { get; set; }

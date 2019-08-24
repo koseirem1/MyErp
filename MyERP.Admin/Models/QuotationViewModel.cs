@@ -12,7 +12,7 @@ namespace MyERP.Admin.Models
         public Guid Id { get; set; }
         [Required]
         [MaxLength(50)]
-        [Display(Name = "Müşteri Adı")]
+        [Display(Name = "Müşteri")]
         public Guid CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
 
@@ -40,7 +40,7 @@ namespace MyERP.Admin.Models
         public string MobilePhone { get; set; }
         [Required]
         [MaxLength(100)]
-        [Display(Name = "Ürün Adı")]
+        [Display(Name = "Ürün")]
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; }
         [MaxLength(4000)]
@@ -52,7 +52,7 @@ namespace MyERP.Admin.Models
         public decimal UnitPrice { get; set; }
         [Display(Name = "Ürün Adedi ")]
         public int? Quantity { get; set; }
-        [Display(Name = "Ürün Vergisi")]
+        [Display(Name = "Vergi")]
         [MaxLength(20)]
         public Guid? TaxId { get; set; }
         public virtual Tax Tax { get; set; }
@@ -62,5 +62,16 @@ namespace MyERP.Admin.Models
         public decimal? GrandTotal { get; set; }
         [Display(Name = "Aktif Mi?")]
         public bool IsActive { get; set; }
+        [Display(Name = "Müşteri Adı")]
+
+        public string CustomerFullName { get; set; }
+
+        [Display(Name = "Ürün Adı")]
+
+        public string ProductName { get; set; }
+
+        [Display(Name = "Ürün Vergisi")]
+
+        public string TaxName { get; set; }
     }
 }

@@ -12,12 +12,12 @@ namespace MyERP.Admin.Models
         public Guid Id { get; set; }
         [Required]
         [MaxLength(50)]
-        [Display(Name = "Müşteri Adı")]
+        [Display(Name = "Müşteri")]
         public Guid CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
         [Display(Name = "Ürün Birim Fiyatı")]
         public decimal? UnitPrice { get; set; }
-        [Display(Name = "Banka Adı")]
+        [Display(Name = "Banka")]
         public Guid? BankId { get; set; }
         public virtual Bank Bank { get; set; }
         [Display(Name = "Alınan Miktar")]
@@ -26,6 +26,12 @@ namespace MyERP.Admin.Models
         public decimal? BalAmount { get; set; }
         [Display(Name = "Aktif Mi?")]
         public bool IsActive { get; set; }
-        
+
+        [Display(Name = "Müşteri Adı")]
+
+        public string CustomerFullName { get; set; }
+        [Display(Name = "Banka Adı")]
+        public string BankName { get; set; }
+
     }
 }

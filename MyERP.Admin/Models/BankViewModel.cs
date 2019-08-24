@@ -18,11 +18,11 @@ namespace MyERP.Admin.Models
         [DataType(DataType.MultilineText)]
         [Display(Name = "Adres")]
         public string Address { get; set; }
-        [Display(Name = "Ülke Adı")]
+        [Display(Name = "Ülke ")]
 
         public Guid? CountryId { get; set; }
         public virtual Country Country { get; set; }
-        [Display(Name = "Şehir")]
+        [Display(Name = "Şehir ")]
         public Guid? CityId { get; set; }
         public virtual City City { get; set; }
 
@@ -38,5 +38,10 @@ namespace MyERP.Admin.Models
 
         [Display(Name = "Aktif Mi?")]
         public bool IsActive { get; set; }
+
+        [Display(Name = "Şehir Adı")]
+        public string CityName { get; set; }
+        [Display(Name = "Ülke Adı")]
+        public string CountryName { get; set; }
     }
 }

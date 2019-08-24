@@ -43,5 +43,11 @@ namespace MyERP.Admin.Models
 
         [Display(Name = "Aktif Mi?")]
         public bool IsActive { get; set; }
+
+
+        [Display(Name = "Şehir Adı")]
+        public string CityName { get; set; }
+        [Display(Name = "Ülke Adı")]
+        public string CountryName { get; set; }
     }
 }

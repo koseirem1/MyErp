@@ -12,9 +12,10 @@ namespace MyERP.Data.Builders
     {
         public OrderBuilder(EntityTypeConfiguration<Order> builder)
         {
-            builder.HasRequired(a => a.Customer).WithMany(b => b.Orders).HasForeignKey(a => a.Customer);
+            builder.HasRequired(a => a.Customer).WithMany(b => b.Orders).HasForeignKey(a => a.CustomerId);
             builder.Property(b => b.Created).HasMaxLength(100);
-            builder.HasRequired(a => a.Product).WithMany(b => b.Orders).HasForeignKey(a => a.Product);
+            builder.HasRequired(a => a.Product).WithMany(b => b.Orders).HasForeignKey(a => a.ProductId
+            );
             builder.Property(b => b.Description).HasMaxLength(4000);
             builder.HasOptional(a => a.Tax).WithMany(b => b.Orders).HasForeignKey(a => a.TaxId);
            

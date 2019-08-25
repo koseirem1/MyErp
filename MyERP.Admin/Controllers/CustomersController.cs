@@ -6,8 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MyERP.Admin.Models;
 using MyERP.Data;
-using MyERP.Model;
 
 namespace MyERP.Admin.Controllers
 {
@@ -18,8 +18,8 @@ namespace MyERP.Admin.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = db.Customers.Include(c => c.City).Include(c => c.Country);
-            return View(customers.ToList());
+            var customerViewModels = db.CustomerViewModels.Include(c => c.City).Include(c => c.Country);
+            return View(customerViewModels.ToList());
         }
 
         // GET: Customers/Details/5
@@ -29,12 +29,12 @@ namespace MyERP.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            CustomerViewModel customerViewModel = db.CustomerViewModels.Find(id);
+            if (customerViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(customerViewModel);
         }
 
         // GET: Customers/Create
@@ -50,19 +50,19 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,TitleOfCourtesy,Gender,MobilePhone,Email,Company,Photo,Address,CountryId,CityId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Customer customer)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,TitleOfCourtesy,Gender,MobilePhone,Email,Company,Address,CountryId,CityId,Photo,IsActive,CityName,CountryName")] CustomerViewModel customerViewModel)
         {
             if (ModelState.IsValid)
             {
-                customer.Id = Guid.NewGuid();
-                db.Customers.Add(customer);
+                customerViewModel.Id = Guid.NewGuid();
+                db.CustomerViewModels.Add(customerViewModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", customer.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", customer.CountryId);
-            return View(customer);
+            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", customerViewModel.CityId);
+            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", customerViewModel.CountryId);
+            return View(customerViewModel);
         }
 
         // GET: Customers/Edit/5
@@ -72,14 +72,14 @@ namespace MyERP.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            CustomerViewModel customerViewModel = db.CustomerViewModels.Find(id);
+            if (customerViewModel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", customer.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", customer.CountryId);
-            return View(customer);
+            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", customerViewModel.CityId);
+            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", customerViewModel.CountryId);
+            return View(customerViewModel);
         }
 
         // POST: Customers/Edit/5
@@ -87,17 +87,17 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,TitleOfCourtesy,Gender,MobilePhone,Email,Company,Photo,Address,CountryId,CityId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,TitleOfCourtesy,Gender,MobilePhone,Email,Company,Address,CountryId,CityId,Photo,IsActive,CityName,CountryName")] CustomerViewModel customerViewModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
+                db.Entry(customerViewModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", customer.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", customer.CountryId);
-            return View(customer);
+            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", customerViewModel.CityId);
+            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", customerViewModel.CountryId);
+            return View(customerViewModel);
         }
 
         // GET: Customers/Delete/5
@@ -107,12 +107,12 @@ namespace MyERP.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            CustomerViewModel customerViewModel = db.CustomerViewModels.Find(id);
+            if (customerViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(customerViewModel);
         }
 
         // POST: Customers/Delete/5
@@ -120,8 +120,8 @@ namespace MyERP.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
+            CustomerViewModel customerViewModel = db.CustomerViewModels.Find(id);
+            db.CustomerViewModels.Remove(customerViewModel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

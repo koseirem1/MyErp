@@ -33,5 +33,7 @@ namespace MyERP.Model
         public decimal Subtotal { get; set; }
         public decimal GrandTotal  { get; set; }
 
+       
+
     }
 }

@@ -20,8 +20,9 @@ namespace MyERP.Admin.Models
         public string LastName { get; set; }
        
         [Display(Name = "Tam Ad")]
+        
         public string FullName { get { return FirstName + " " + LastName; } }
-        [MaxLength(20)]
+      
         [Display(Name = "Nezaket Ünvanı")]
         public TitleOfCourtesy? TitleOfCourtesy { get; set; }
         [Display(Name = "Cinsiyet")]

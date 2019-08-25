@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using MyERP.Data.Builders;
 using MyERP.Model;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace MyERP.Data
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, MyERP.Data.Migrations.Configuration>());
         }
 
         public static ApplicationDbContext Create()
@@ -43,7 +45,25 @@ namespace MyERP.Data
         {
             base.OnModelCreating(modelBuilder);
             
+            new BankBuilder(modelBuilder.Entity<Bank>());
+            new CustomerBuilder(modelBuilder.Entity<Customer>());
+            new InvoiceBuilder(modelBuilder.Entity<Invoice>());
+            new CityBuilder(modelBuilder.Entity<City>());
+            new OrderBuilder(modelBuilder.Entity<Order>());
+            new ProductBuilder(modelBuilder.Entity<Product>());
+            new QuotationBuilder(modelBuilder.Entity<Quotation>());
+            new CountryBuilder(modelBuilder.Entity<Country>());
+            new ReceiptBuilder(modelBuilder.Entity<Receipt>());
+            new SupplierBuilder(modelBuilder.Entity<Supplier>());
+            new WarehouseBuilder(modelBuilder.Entity<Warehouse>());
+            new TaxBuilder(modelBuilder.Entity<Tax>());
+           
+
         }
+
+        public System.Data.Entity.DbSet<MyERP.Admin.Models.CustomerViewModel> CustomerViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<MyERP.Admin.Models.BankViewModel> BankViewModels { get; set; }
     }
 }
 

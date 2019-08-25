@@ -1,4 +1,4 @@
-﻿@model MyERP.Model.Customer
+﻿@model MyERP.Admin.Models.CustomerViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Customer</h4>
+    <h4>CustomerViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -83,14 +83,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Photo)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Address)
         </dt>
 
@@ -99,59 +91,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
+            @Html.DisplayNameFor(model => model.Photo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
+            @Html.DisplayFor(model => model.Photo)
         </dd>
 
         <dt>
@@ -163,27 +107,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IpAddress)
+            @Html.DisplayNameFor(model => model.CityName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IpAddress)
+            @Html.DisplayFor(model => model.CityName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UserAgent)
+            @Html.DisplayNameFor(model => model.CountryName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UserAgent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
+            @Html.DisplayFor(model => model.CountryName)
         </dd>
 
     </dl>

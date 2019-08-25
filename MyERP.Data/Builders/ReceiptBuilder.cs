@@ -12,7 +12,7 @@ namespace MyERP.Data.Builders
     {
         public ReceiptBuilder(EntityTypeConfiguration<Receipt> builder)
         {
-            builder.HasRequired(a => a.Customer).WithMany(b => b.Receipts).HasForeignKey(a => a.Customer);
+            builder.HasRequired(a => a.Customer).WithMany(b => b.Receipts).HasForeignKey(a => a.CustomerId);
             builder.HasOptional(a => a.Bank).WithMany(b => b.Receipts).HasForeignKey(a => a.BankId);
 
         }

@@ -12,12 +12,12 @@ namespace MyERP.Data.Builders
     {
         public InvoiceBuilder(EntityTypeConfiguration<Invoice> builder)
         {
-            builder.HasRequired(a => a.Customer).WithMany(b => b.Invoices).HasForeignKey(a => a.Customer);
+            builder.HasRequired(a => a.Customer).WithMany(b => b.Invoices).HasForeignKey(a => a.CustomerId);
             builder.Property(b => b.Address).HasMaxLength(4000);
             builder.Property(b => b.InvoiceAddress).HasMaxLength(4000);
             builder.Property(b => b.Created).HasMaxLength(100);
             builder.Property(b => b.MobilePhone).HasMaxLength(20).IsRequired();
-            builder.HasRequired(a => a.Product).WithMany(b => b.Invoices).HasForeignKey(a => a.Product);
+            builder.HasRequired(a => a.Product).WithMany(b => b.Invoices).HasForeignKey(a => a.ProductId);
             builder.Property(b => b.Description).HasMaxLength(4000);
             builder.HasOptional(a => a.Tax).WithMany(b => b.Invoices).HasForeignKey(a => a.TaxId);
 

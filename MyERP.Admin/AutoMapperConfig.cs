@@ -26,15 +26,15 @@ namespace MyERP.Admin
                    ForMember(dest => dest.Quotations, opt => opt.Ignore()).
                    ForMember(dest => dest.Receipts, opt => opt.Ignore());
 
-                 cfg.CreateMap<Bank, BankViewModel>().ForMember(
+                 //cfg.CreateMap<Bank, BankViewModel>().ForMember(
 
-                      dest => dest.CityName,
-                      opt => opt.MapFrom(src => src.City.Name)).ForMember(
-                      dest => dest.CountryName,
-                      opt => opt.MapFrom(src => src.Country.Name)).ReverseMap()
-                  .ForMember(dest => dest.Country, opt => opt.Ignore())
-                  .ForMember(dest => dest.City, opt => opt.Ignore()).
-                  ForMember(dest => dest.Receipts, opt => opt.Ignore());
+                 //     dest => dest.CityName,
+                 //     opt => opt.MapFrom(src => src.City.Name)).ForMember(
+                 //     dest => dest.CountryName,
+                 //     opt => opt.MapFrom(src => src.Country.Name)).ReverseMap()
+                 // .ForMember(dest => dest.Country, opt => opt.Ignore())
+                 // .ForMember(dest => dest.City, opt => opt.Ignore()).
+                 // ForMember(dest => dest.Receipts, opt => opt.Ignore());
 
             cfg.CreateMap<City, CityViewModel>().ForMember(
            dest => dest.CountryName,

@@ -61,9 +61,11 @@ namespace MyERP.Data
 
         }
 
-        public System.Data.Entity.DbSet<MyERP.Admin.Models.CustomerViewModel> CustomerViewModels { get; set; }
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.CustomerViewModel> CustomerViewModels { get; set; }
 
-        public System.Data.Entity.DbSet<MyERP.Admin.Models.BankViewModel> BankViewModels { get; set; }
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.BankViewModel> BankViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.TaxViewModel> TaxViewModels { get; set; }
     }
 }
 

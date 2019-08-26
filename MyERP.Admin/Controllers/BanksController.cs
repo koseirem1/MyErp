@@ -6,20 +6,34 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using MyERP.Admin.Models;
 using MyERP.Data;
+using MyERP.Model;
+using MyERP.Service;
 
 namespace MyERP.Admin.Controllers
 {
+    [Authorize]
     public class BanksController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ICountryService countryService;
+        private readonly ICityService cityService;
+        private readonly IBankService bankService;
+
+        public BanksController(IBankService bankService, ICityService cityService, ICountryService countryService)
+        {
+            this.bankService = bankService;
+            this.cityService = cityService;
+            this.countryService = countryService;
+        }
+
 
         // GET: Banks
         public ActionResult Index()
         {
-            var bankViewModels = db.BankViewModels.Include(b => b.City).Include(b => b.Country);
-            return View(bankViewModels.ToList());
+            var banks = Mapper.Map<IEnumerable<BankViewModel>>(bankService.GetAll());
+            return View(banks);
         }
 
         // GET: Banks/Details/5
@@ -29,19 +43,19 @@ namespace MyERP.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BankViewModel bankViewModel = db.BankViewModels.Find(id);
-            if (bankViewModel == null)
+            BankViewModel bank = Mapper.Map<BankViewModel>(bankService.Get(id.Value));
+            if (bank == null)
             {
                 return HttpNotFound();
             }
-            return View(bankViewModel);
+            return View(bank);
         }
 
         // GET: Banks/Create
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name");
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name");
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name");
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -50,19 +64,18 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Address,CountryId,CityId,Account,OpenBalance,CloseBalance,IsActive,CityName,CountryName")] BankViewModel bankViewModel)
+        public ActionResult Create( BankViewModel bank)
         {
             if (ModelState.IsValid)
             {
-                bankViewModel.Id = Guid.NewGuid();
-                db.BankViewModels.Add(bankViewModel);
-                db.SaveChanges();
+                var entity = Mapper.Map<Bank>(bank);
+                bankService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", bankViewModel.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", bankViewModel.CountryId);
-            return View(bankViewModel);
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", bank.CityId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", bank.CountryId);
+            return View(bank);
         }
 
         // GET: Banks/Edit/5
@@ -72,14 +85,14 @@ namespace MyERP.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BankViewModel bankViewModel = db.BankViewModels.Find(id);
-            if (bankViewModel == null)
+            BankViewModel bank = Mapper.Map<BankViewModel>(bankService.Get(id.Value));
+            if (bank == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", bankViewModel.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", bankViewModel.CountryId);
-            return View(bankViewModel);
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", bank.CityId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", bank.CountryId);
+            return View(bank);
         }
 
         // POST: Banks/Edit/5
@@ -87,17 +100,17 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Address,CountryId,CityId,Account,OpenBalance,CloseBalance,IsActive,CityName,CountryName")] BankViewModel bankViewModel)
+        public ActionResult Edit( BankViewModel bank)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bankViewModel).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Bank>(bank);
+                bankService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", bankViewModel.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", bankViewModel.CountryId);
-            return View(bankViewModel);
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", bank.CityId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", bank.CountryId);
+            return View(bank);
         }
 
         // GET: Banks/Delete/5
@@ -107,12 +120,12 @@ namespace MyERP.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BankViewModel bankViewModel = db.BankViewModels.Find(id);
-            if (bankViewModel == null)
+            BankViewModel bank = Mapper.Map<BankViewModel>(bankService.Get(id.Value));
+            if (bank == null)
             {
                 return HttpNotFound();
             }
-            return View(bankViewModel);
+            return View(bank);
         }
 
         // POST: Banks/Delete/5
@@ -120,19 +133,11 @@ namespace MyERP.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            BankViewModel bankViewModel = db.BankViewModels.Find(id);
-            db.BankViewModels.Remove(bankViewModel);
-            db.SaveChanges();
+            bankService.Delete(id);
             return RedirectToAction("Index");
+            
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }

@@ -11,7 +11,7 @@ namespace MyERP.Admin.Models
     {
         public Guid Id { get; set; }
         [Required]
-        [MaxLength(50)]
+       
         [Display(Name = "Müşteri")]
         public Guid CustomerId { get; set; }
         public virtual Customer Customer { get; set; }

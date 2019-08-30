@@ -11,7 +11,7 @@ namespace MyERP.Admin.Models
     {
         public Guid Id { get; set; }
         [Required]
-        [MaxLength(50)]
+      
         [Display(Name = "Müşteri ")]
         public Guid CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
@@ -21,7 +21,7 @@ namespace MyERP.Admin.Models
         [Display(Name = "Oluşturan Kişi")]
         public string Created { get; set; }
         [Required]
-        [MaxLength(100)]
+       
         [Display(Name = "Ürün ")]
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; }

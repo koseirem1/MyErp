@@ -11,7 +11,7 @@ namespace MyERP.Admin.Models
     {
         public Guid Id { get; set; }
         [Required]
-        [MaxLength(50)]
+       
         [Display(Name = "Müşteri")]
         public Guid CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
@@ -39,7 +39,7 @@ namespace MyERP.Admin.Models
         [Display(Name = "Cep Telefonu")]
         public string MobilePhone { get; set; }
         [Required]
-        [MaxLength(100)]
+     
         [Display(Name = "Ürün")]
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; }
@@ -53,7 +53,7 @@ namespace MyERP.Admin.Models
         [Display(Name = "Ürün Adedi ")]
         public int? Quantity { get; set; }
         [Display(Name = "Vergi")]
-        [MaxLength(20)]
+      
         public Guid? TaxId { get; set; }
         public virtual Tax Tax { get; set; }
         [Display(Name = "Ara Toplam")] //vergisiz

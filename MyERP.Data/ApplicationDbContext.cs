@@ -23,7 +23,7 @@ namespace MyERP.Data
         {
             return new ApplicationDbContext();
         }
-
+       
         public virtual DbSet<Bank> Banks { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
@@ -60,6 +60,10 @@ namespace MyERP.Data
            
 
         }
+
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.InvoiceViewModel> InvoiceViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.CityViewModel> CityViewModels { get; set; }
 
         //public System.Data.Entity.DbSet<MyERP.Admin.Models.CustomerViewModel> CustomerViewModels { get; set; }
 

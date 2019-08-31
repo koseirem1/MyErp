@@ -61,6 +61,22 @@ namespace MyERP.Data
 
         }
 
+       
+
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.InvoiceViewModel> InvoiceViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.ReceiptViewModel> ReceiptViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.InvoiceViewModel> InvoiceViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.OrderViewModel> OrderViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.QuotationViewModel> QuotationViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.WarehouseViewModel> WarehouseViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.ProductViewModel> ProductViewModels { get; set; }
+
         //public System.Data.Entity.DbSet<MyERP.Admin.Models.InvoiceViewModel> InvoiceViewModels { get; set; }
 
         //public System.Data.Entity.DbSet<MyERP.Admin.Models.CityViewModel> CityViewModels { get; set; }

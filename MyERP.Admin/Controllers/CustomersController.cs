@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -25,6 +26,13 @@ namespace MyERP.Admin.Controllers
             this.customerService = customerService;
             this.cityService = cityService;
             this.countryService = countryService;
+        }
+
+        [HttpPost]
+        public ActionResult GetCities(Guid countryId)
+        {
+            var cities = Mapper.Map<IEnumerable<CityViewModel>>(cityService.GetAllByCountryId(countryId));
+            return Json(cities);
         }
         // GET: Customers
         public ActionResult Index()
@@ -61,10 +69,19 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( CustomerViewModel customer)
+        public ActionResult Create( CustomerViewModel customer, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    customer.Photo = UploadFile(upload);
+                }
+                catch(Exception ex)
+                {
+                    ViewBag.Error = ex.Message;
+                    return View(customer);
+                }
                 var entity = Mapper.Map<Customer>(customer);
                 customerService.Insert(entity);
                 return RedirectToAction("Index");
@@ -74,6 +91,53 @@ namespace MyERP.Admin.Controllers
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", customer.CityId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", customer.CountryId);
             return View(customer);
+        }
+        public string UploadFile(HttpPostedFileBase upload)
+        {
+            
+            if (upload != null && upload.ContentLength > 0)
+            {
+                
+                var extension = Path.GetExtension(upload.FileName).ToLower();
+                if (extension == ".jpg" || extension == ".jpeg" ||  extension == ".png")
+                {
+                    
+                    if (Directory.Exists(Server.MapPath("~/Uploads")))
+                    {
+                        
+                        string fileName = upload.FileName.ToLower();
+                        fileName = fileName.Replace("İ", "i");
+                        fileName = fileName.Replace("Ş", "s");
+                        fileName = fileName.Replace("Ğ", "g");
+                        fileName = fileName.Replace("ğ", "g");
+                        fileName = fileName.Replace("ı", "i");
+                        fileName = fileName.Replace("(", "");
+                        fileName = fileName.Replace(")", "");
+                        fileName = fileName.Replace(" ", "-");
+                        fileName = fileName.Replace(",", "");
+                        fileName = fileName.Replace("ö", "o");
+                        fileName = fileName.Replace("ü", "u");
+                        fileName = fileName.Replace("`", "");
+                        
+                        fileName = DateTime.Now.Ticks.ToString() + fileName;
+
+                       
+                        upload.SaveAs(Path.Combine(Server.MapPath("~/Uploads"), fileName));
+
+                       
+                        return fileName;
+                    }
+                    else
+                    {
+                        throw new Exception("Uploads dizini mevcut değil.");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Dosya uzantısı jpg, jpeg veya png olmalıdır.");
+                }
+            }
+            return null;
         }
 
         // GET: Customers/Edit/5
@@ -98,10 +162,24 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( CustomerViewModel customer)
+        public ActionResult Edit( CustomerViewModel customer, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    if (upload != null && upload.ContentLength > 0)
+                    {
+                        customer.Photo = UploadFile(upload);
+                    }
+
+                }
+                catch(Exception ex)
+                {
+                    ViewBag.Error = ex.Message;
+                    return View(customer);
+
+                }
                 var entity = Mapper.Map<Customer>(customer);
                 customerService.Update(entity);
                 return RedirectToAction("Index");

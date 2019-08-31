@@ -62,7 +62,7 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( ReceiptViewModel receipt)
+        public ActionResult Create(ReceiptViewModel receipt)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace MyERP.Admin.Controllers
 
             ViewBag.BankId = new SelectList(bankService.GetAll(), "Id", "Name");
             ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
-            
+
             return View(receipt);
         }
 
@@ -92,7 +92,7 @@ namespace MyERP.Admin.Controllers
             }
             ViewBag.BankId = new SelectList(bankService.GetAll(), "Id", "Name");
             ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
-           
+
             return View(receipt);
         }
 
@@ -101,7 +101,7 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( ReceiptViewModel receipt)
+        public ActionResult Edit(ReceiptViewModel receipt)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +111,7 @@ namespace MyERP.Admin.Controllers
             }
             ViewBag.BankId = new SelectList(bankService.GetAll(), "Id", "Name");
             ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
-            
+
             return View(receipt);
         }
 
@@ -139,6 +139,6 @@ namespace MyERP.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-       
+
     }
 }

@@ -13,8 +13,8 @@ namespace MyERP.Model
         public string Description { get; set; } //product specification
         public decimal? PurchaseCost { get; set; }
         public decimal? SellCost { get; set; }
-        public bool NotCanBePurchased { get; set; }
-        public bool NotCanBeSold { get; set; }
+        public bool CanBePurchased { get; set; }
+        public bool CanBeSold { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
 
         public virtual ICollection<Invoice> Invoices { get; set; }

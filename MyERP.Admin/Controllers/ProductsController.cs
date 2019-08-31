@@ -56,11 +56,11 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( ProductViewModel product)
+        public ActionResult Create(ProductViewModel product)
         {
             if (ModelState.IsValid)
             {
-                var entity = Mapper.Map<Product>(product); 
+                var entity = Mapper.Map<Product>(product);
                 productService.Insert(entity);
                 return RedirectToAction("Index");
             }
@@ -88,7 +88,7 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( ProductViewModel product)
+        public ActionResult Edit(ProductViewModel product)
         {
             if (ModelState.IsValid)
             {
@@ -123,6 +123,6 @@ namespace MyERP.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-       
+
     }
 }

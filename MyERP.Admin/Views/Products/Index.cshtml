@@ -1,135 +1,80 @@
-﻿@model IEnumerable<MyERP.Model.Product>
-
+﻿@model IEnumerable<MyERP.Admin.Models.ProductViewModel>
+@using MyERP.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Ürünler";
 }
 
-<h2>Index</h2>
+<h2>Ürünler</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn-primary">Yeni Ürün</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PurchaseCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SellCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NotCanBePurchased)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NotCanBeSold)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IpAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserAgent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PurchaseCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SellCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NotCanBePurchased)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NotCanBeSold)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IpAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserAgent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SellCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CanBePurchased)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CanBeSold)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th class="all">Eylemler</th>
+        </tr>
+        </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @(item.ProductType?.GetAttribute<DisplayAttribute>().Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SellCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CanBePurchased)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CanBeSold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td class="text-nowrap">
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" }) 
+                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id },new { @class = "btn btn-default btn-sm" }) 
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+</tbody>
 </table>

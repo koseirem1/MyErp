@@ -21,6 +21,10 @@ namespace MyERP.Service
         {
             return cityRepository.Any(x => x.Id == id);
         }
+        public IEnumerable<City> GetAllByCountryId(Guid countryId)
+        {
+            return cityRepository.GetAll(x => x.CountryId == countryId, o => o.Name, false);
+        }
 
         public void Delete(Guid id)
         {
@@ -58,6 +62,7 @@ namespace MyERP.Service
     public interface ICityService
     {
         IEnumerable<City> GetAll();
+        IEnumerable<City> GetAllByCountryId(Guid countryId);
         City Get(Guid id);
         void Insert(City city);
         void Update(City city);

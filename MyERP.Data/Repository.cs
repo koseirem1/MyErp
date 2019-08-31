@@ -44,8 +44,12 @@ namespace MyERP.Data
             Update(entity);
         }
 
-        public T Get(Guid id)
+        public T Get(Guid id, bool asNoTracking = false)
         {
+            if (asNoTracking == true)
+            {
+                return entities.Where(x => x.Id == id).AsNoTracking().FirstOrDefault();
+            }
             return entities.Where(x => x.Id == id).FirstOrDefault();
         }
 
@@ -104,6 +108,9 @@ namespace MyERP.Data
 
         public void Update(T entity)
         {
+            var orginalEntity = Get(entity.Id, true);
+            entity.CreatedAt = orginalEntity.CreatedAt;
+            entity.CreatedBy = orginalEntity.CreatedBy;
             entity.UpdatedAt = DateTime.Now;
             entity.UpdatedBy = httpContext.User.Identity.GetUserId();
             entity.IpAddress = HttpContext.Current.Request.UserHostAddress;
@@ -127,7 +134,7 @@ namespace MyERP.Data
         long LongCount(Expression<Func<T, bool>> where);
 
         // koşula uyan ilk kaydı döndüren metotlar:
-        T Get(Guid id);
+        T Get(Guid id, bool asNoTracking = false);
         T Get(Expression<Func<T, bool>> where);
         T Get(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy, bool desc = false);
 

@@ -11,9 +11,9 @@ namespace MyERP.Service
     public class QuotationService:IQuotationService
     {
         private readonly IRepository<Quotation> quotationRepository;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public QuotationService(IRepository<Quotation> quotationRepository, UnitOfWork unitOfWork)
+        public QuotationService(IRepository<Quotation> quotationRepository, IUnitOfWork unitOfWork)
         {
             this.quotationRepository = quotationRepository;
             this.unitOfWork = unitOfWork;

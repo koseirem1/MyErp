@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyERP.Model.Receipt>
+﻿@model IEnumerable<MyERP.Admin.Models.ReceiptViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -27,37 +27,13 @@
             @Html.DisplayNameFor(model => model.BalAmount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.IsActive)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IpAddress)
+            @Html.DisplayNameFor(model => model.CustomerFullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserAgent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
+            @Html.DisplayNameFor(model => model.BankName)
         </th>
         <th></th>
     </tr>
@@ -80,37 +56,13 @@
             @Html.DisplayFor(modelItem => item.BalAmount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedAt)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IpAddress)
+            @Html.DisplayFor(modelItem => item.CustomerFullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserAgent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
+            @Html.DisplayFor(modelItem => item.BankName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

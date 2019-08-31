@@ -35,7 +35,7 @@ namespace MyERP.Admin.Models
         [Display(Name = "Ürün Adedi ")]
         public int? Quantity { get; set; }
         [Display(Name = "Vergi")]
-        [MaxLength(20)]
+        
         public Guid? TaxId { get; set; }
         public virtual Tax Tax { get; set; }
         [Display(Name = "Ara Toplam")]

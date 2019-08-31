@@ -11,9 +11,9 @@ namespace MyERP.Service
    public class ReceiptService:IReceiptService
     {
         private readonly IRepository<Receipt> receiptRepository;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public ReceiptService(IRepository<Receipt> receiptRepository, UnitOfWork unitOfWork)
+        public ReceiptService(IRepository<Receipt> receiptRepository, IUnitOfWork unitOfWork)
         {
             this.receiptRepository = receiptRepository;
             this.unitOfWork = unitOfWork;

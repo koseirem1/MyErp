@@ -14,135 +14,137 @@ using MyERP.Service;
 
 namespace MyERP.Admin.Controllers
 {
-    public class QuotationsController : Controller
-    {
-        private readonly IQuotationService quotationService;
-        private readonly ICustomerService customerService;
-        private readonly IProductService productService;
-        private readonly ITaxService taxService;
-
-
-        public QuotationsController(IQuotationService quotationService, ICustomerService customerService, IProductService productService, ITaxService taxService)
+    
+        public class QuotationsController : Controller
         {
-            this.quotationService = quotationService;
-            this.customerService = customerService;
-            this.productService = productService;
-            this.taxService = taxService;
-        }
+            private readonly IQuotationService quotationService;
+            private readonly ICustomerService customerService;
+            private readonly IProductService productService;
+            private readonly ITaxService taxService;
 
-        // GET: Quotations
-        public ActionResult Index()
-        {
-            var quotations = Mapper.Map<IEnumerable<QuotationViewModel>>(quotationService.GetAll());
-            return View(quotations);
-        }
 
-        // GET: Quotations/Details/5
-        public ActionResult Details(Guid? id)
-        {
-            if (id == null)
+            public QuotationsController(IQuotationService quotationService, ICustomerService customerService, IProductService productService, ITaxService taxService)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                this.quotationService = quotationService;
+                this.customerService = customerService;
+                this.productService = productService;
+                this.taxService = taxService;
             }
-            QuotationViewModel quotation = Mapper.Map<QuotationViewModel>(quotationService.Get(id.Value));
-            if (quotation == null)
+
+            // GET: Quotations
+            public ActionResult Index()
             {
-                return HttpNotFound();
+                var quotations = Mapper.Map<IEnumerable<QuotationViewModel>>(quotationService.GetAll());
+                return View(quotations);
             }
-            return View(quotation);
-        }
 
-        // GET: Quotations/Create
-        public ActionResult Create()
-        {
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
-            ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
-            ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
-            return View();
-        }
-
-        // POST: Quotations/Create
-        // Aşırı gönderim saldırılarından korunmak için, lütfen bağlamak istediğiniz belirli özellikleri etkinleştirin, 
-        // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create( QuotationViewModel quotation)
-        {
-            if (ModelState.IsValid)
+            // GET: Quotations/Details/5
+            public ActionResult Details(Guid? id)
             {
-                var entity = Mapper.Map<Quotation>(quotation); 
-                quotationService.Insert(entity);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                QuotationViewModel quotation = Mapper.Map<QuotationViewModel>(quotationService.Get(id.Value));
+                if (quotation == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(quotation);
+            }
+
+            // GET: Quotations/Create
+            public ActionResult Create()
+            {
+                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+                ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
+                ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
+                return View();
+            }
+
+            // POST: Quotations/Create
+            // Aşırı gönderim saldırılarından korunmak için, lütfen bağlamak istediğiniz belirli özellikleri etkinleştirin, 
+            // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Create(QuotationViewModel quotation)
+            {
+                if (ModelState.IsValid)
+                {
+                    var entity = Mapper.Map<Quotation>(quotation);
+                    quotationService.Insert(entity);
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+                ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
+                ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
+                return View(quotation);
+            }
+
+            // GET: Quotations/Edit/5
+            public ActionResult Edit(Guid? id)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                QuotationViewModel quotation = Mapper.Map<QuotationViewModel>(quotationService.Get(id.Value));
+                if (quotation == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+                ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
+                ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
+                return View(quotation);
+            }
+
+            // POST: Quotations/Edit/5
+            // Aşırı gönderim saldırılarından korunmak için, lütfen bağlamak istediğiniz belirli özellikleri etkinleştirin, 
+            // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Edit(QuotationViewModel quotation)
+            {
+                if (ModelState.IsValid)
+                {
+                    var entity = Mapper.Map<Quotation>(quotation);
+                    quotationService.Update(entity);
+                    return RedirectToAction("Index");
+                }
+                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+                ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
+                ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
+                return View(quotation);
+            }
+
+            // GET: Quotations/Delete/5
+            public ActionResult Delete(Guid? id)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                QuotationViewModel quotation = Mapper.Map<QuotationViewModel>(quotationService.Get(id.Value));
+                if (quotation == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(quotation);
+            }
+
+            // POST: Quotations/Delete/5
+            [HttpPost, ActionName("Delete")]
+            [ValidateAntiForgeryToken]
+            public ActionResult DeleteConfirmed(Guid id)
+            {
+                quotationService.Delete(id);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
-            ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
-            ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
-            return View(quotation);
+
         }
-
-        // GET: Quotations/Edit/5
-        public ActionResult Edit(Guid? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            QuotationViewModel quotation = Mapper.Map<QuotationViewModel>(quotationService.Get(id.Value));
-            if (quotation == null)
-            {
-                return HttpNotFound();
-            }
-
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
-            ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
-            ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
-            return View(quotation);
-        }
-
-        // POST: Quotations/Edit/5
-        // Aşırı gönderim saldırılarından korunmak için, lütfen bağlamak istediğiniz belirli özellikleri etkinleştirin, 
-        // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit( QuotationViewModel quotation)
-        {
-            if (ModelState.IsValid)
-            {
-                var entity = Mapper.Map<Quotation>(quotation);
-                quotationService.Update(entity);
-                return RedirectToAction("Index");
-            }
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
-            ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
-            ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
-            return View(quotation);
-        }
-
-        // GET: Quotations/Delete/5
-        public ActionResult Delete(Guid? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            QuotationViewModel quotation = Mapper.Map<QuotationViewModel>(quotationService.Get(id.Value));
-            if (quotation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(quotation);
-        }
-
-        // POST: Quotations/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
-        {
-            quotationService.Delete(id);
-            return RedirectToAction("Index");
-        }
-
-      
     }
-}
+

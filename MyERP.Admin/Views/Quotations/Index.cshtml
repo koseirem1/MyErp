@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyERP.Model.Quotation>
+﻿@model IEnumerable<MyERP.Admin.Models.QuotationViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -39,7 +39,7 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.UnitPrice)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Quantity)
@@ -51,37 +51,16 @@
             @Html.DisplayNameFor(model => model.GrandTotal)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.IsActive)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IpAddress)
+            @Html.DisplayNameFor(model => model.CustomerFullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserAgent)
+            @Html.DisplayNameFor(model => model.ProductName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
+            @Html.DisplayNameFor(model => model.TaxName)
         </th>
         <th></th>
     </tr>
@@ -116,7 +95,7 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            @Html.DisplayFor(modelItem => item.UnitPrice)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Quantity)
@@ -128,37 +107,16 @@
             @Html.DisplayFor(modelItem => item.GrandTotal)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedAt)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IpAddress)
+            @Html.DisplayFor(modelItem => item.CustomerFullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserAgent)
+            @Html.DisplayFor(modelItem => item.ProductName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Location)
+            @Html.DisplayFor(modelItem => item.TaxName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

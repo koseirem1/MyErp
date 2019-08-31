@@ -49,6 +49,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -71,9 +74,14 @@
     <Compile Include="Builders\SupplierBuilder.cs" />
     <Compile Include="Builders\TaxBuilder.cs" />
     <Compile Include="Builders\WarehouseBuilder.cs" />
+    <Compile Include="EntityFrameworkExtensions.cs" />
     <Compile Include="Migrations\201908251649416_InitialCreate.cs" />
     <Compile Include="Migrations\201908251649416_InitialCreate.Designer.cs">
       <DependentUpon>201908251649416_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908311428096_product.cs" />
+    <Compile Include="Migrations\201908311428096_product.Designer.cs">
+      <DependentUpon>201908311428096_product.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +101,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201908251649416_InitialCreate.resx">
       <DependentUpon>201908251649416_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908311428096_product.resx">
+      <DependentUpon>201908311428096_product.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,4 @@
-﻿@model MyERP.Admin.Models.InvoiceViewModel
+﻿@model MyERP.Model.Invoice
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>InvoiceViewModel</h4>
+    <h4>Invoice</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -115,6 +115,62 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedAt)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.IsActive)
         </dt>
 
@@ -123,27 +179,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CustomerFullName)
+            @Html.DisplayNameFor(model => model.IpAddress)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CustomerFullName)
+            @Html.DisplayFor(model => model.IpAddress)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
+            @Html.DisplayNameFor(model => model.UserAgent)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ProductName)
+            @Html.DisplayFor(model => model.UserAgent)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TaxName)
+            @Html.DisplayNameFor(model => model.Location)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TaxName)
+            @Html.DisplayFor(model => model.Location)
         </dd>
 
     </dl>

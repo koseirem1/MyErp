@@ -51,6 +51,8 @@ namespace MyERP.Admin
                dest => dest.Banks, opt => opt.Ignore()).ForMember(
                dest => dest.Suppliers, opt => opt.Ignore());
 
+            cfg.CreateMap<Warehouse, WarehouseViewModel>();
+
             cfg.CreateMap<Invoice, InvoiceViewModel>().ForMember(
            dest => dest.CustomerFullName,
            opt => opt.MapFrom(src => src.Customer.FullName)).ForMember(

@@ -11,7 +11,7 @@ namespace MyERP.Admin.Models
     {
         public Guid Id { get; set; }
         [Required]
-        
+
         [Display(Name = "Müşteri")]
         public Guid CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
@@ -35,7 +35,7 @@ namespace MyERP.Admin.Models
         public string MobilePhone { get; set; }
 
         [Required]
-       
+
         [Display(Name = "Ürün")]
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; }
@@ -51,7 +51,7 @@ namespace MyERP.Admin.Models
         public int? Quantity { get; set; }
 
         [Display(Name = "Vergi")]
-        
+
         public Guid? TaxId { get; set; }
         public virtual Tax Tax { get; set; }
         [Display(Name = "Ara Toplam")]

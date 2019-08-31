@@ -11,9 +11,9 @@ namespace MyERP.Service
    public class SupplierService:ISupplierService
     {
         private readonly IRepository<Supplier> supplierRepository;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public SupplierService(IRepository<Supplier> supplierRepository, UnitOfWork unitOfWork)
+        public SupplierService(IRepository<Supplier> supplierRepository, IUnitOfWork unitOfWork)
         {
             this.supplierRepository = supplierRepository;
             this.unitOfWork = unitOfWork;

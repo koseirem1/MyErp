@@ -11,9 +11,9 @@ namespace MyERP.Service
     public class ProductService:IProductService
     {
         private readonly IRepository<Product> productRepository;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public ProductService(IRepository<Product> productRepository, UnitOfWork unitOfWork)
+        public ProductService(IRepository<Product> productRepository, IUnitOfWork unitOfWork)
         {
             this.productRepository = productRepository;
             this.unitOfWork = unitOfWork;

@@ -14,6 +14,7 @@ using MyERP.Service;
 
 namespace MyERP.Admin.Controllers
 {
+
     public class InvoicesController : Controller
     {
         private readonly IInvoiceService invoiceService;
@@ -140,9 +141,10 @@ namespace MyERP.Admin.Controllers
         {
             invoiceService.Delete(id);
             return RedirectToAction("Index");
-            
+
         }
 
-      
+
     }
+
 }

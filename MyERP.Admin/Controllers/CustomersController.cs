@@ -59,8 +59,9 @@ namespace MyERP.Admin.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name");
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(Guid.NewGuid()), "Id", "Name");
+            
             return View();
         }
 
@@ -88,7 +89,7 @@ namespace MyERP.Admin.Controllers
                
             }
 
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", customer.CityId);
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(customer.CountryId ?? Guid.NewGuid()), "Id", "Name", customer.CityId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", customer.CountryId);
             return View(customer);
         }

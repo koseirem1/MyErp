@@ -1,22 +1,16 @@
 ﻿@model MyERP.Admin.Models.CityViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detaylar";
 }
 
-<h2>Details</h2>
+<h2>Detaylar</h2>
 
 <div>
-    <h4>CityViewModel</h4>
+    <h4>Şehirler</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Country.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Country.Name)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -24,6 +18,13 @@
 
         <dd>
             @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryName)
         </dd>
 
         <dt>
@@ -34,17 +35,11 @@
             @Html.DisplayFor(model => model.IsActive)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CountryName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CountryName)
-        </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index")
 </p>

@@ -30,9 +30,34 @@ namespace MyERP.Admin.Controllers
                 this.productService = productService;
                 this.taxService = taxService;
             }
+        [HttpPost]
+        public ActionResult AddCustomer(string firstName, string lastName,TitleOfCourtesy titleofCourtesy ,string contactCompany, string contactPosta, string contactPhone)
+        {
+            try
+            {
+                var customer = new Customer();
+                customer.FirstName = firstName;
+                customer.LastName = lastName;
+                customer.TitleOfCourtesy = titleofCourtesy;
+                customer.Company = contactCompany;
+                customer.Email = contactPosta;
+                customer.MobilePhone = contactPhone;
+                customerService.Insert(customer);
+                return Json(true);
+            }
+            catch (Exception ex)
+            {
+                return Json(false);
+            }
+        }
 
-            // GET: Quotations
-            public ActionResult Index()
+        [HttpPost]
+        public ActionResult GetCustomers()
+        {
+            return Json(Mapper.Map<IEnumerable<CustomerViewModel>>(customerService.GetAll()));
+        }
+        // GET: Quotations
+        public ActionResult Index()
             {
                 var quotations = Mapper.Map<IEnumerable<QuotationViewModel>>(quotationService.GetAll());
                 return View(quotations);

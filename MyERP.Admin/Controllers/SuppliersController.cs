@@ -26,6 +26,13 @@ namespace MyERP.Admin.Controllers
             this.cityService = cityService;
             this.countryService = countryService;
         }
+
+        [HttpPost]
+        public ActionResult GetCities(Guid countryId)
+        {
+            var cities = Mapper.Map<IEnumerable<CityViewModel>>(cityService.GetAllByCountryId(countryId));
+            return Json(cities);
+        }
         // GET: Suppliers
         public ActionResult Index()
         {
@@ -51,7 +58,7 @@ namespace MyERP.Admin.Controllers
         // GET: Suppliers/Create
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name");
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(Guid.NewGuid()), "Id", "Name");
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             return View();
         }
@@ -61,7 +68,7 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( SupplierViewModel supplier)
+        public ActionResult Create(SupplierViewModel supplier)
         {
             if (ModelState.IsValid)
             {
@@ -70,8 +77,8 @@ namespace MyERP.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name");
-            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(supplier.CountryId ?? Guid.NewGuid()), "Id", "Name",supplier.CityId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name",supplier.CountryId);
             return View(supplier);
         }
 
@@ -97,7 +104,7 @@ namespace MyERP.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( SupplierViewModel supplier)
+        public ActionResult Edit(SupplierViewModel supplier)
         {
             if (ModelState.IsValid)
             {
@@ -132,9 +139,9 @@ namespace MyERP.Admin.Controllers
         {
             supplierService.Delete(id);
             return RedirectToAction("Index");
-            
+
         }
 
-        
+
     }
 }

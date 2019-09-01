@@ -61,7 +61,11 @@ namespace MyERP.Data
 
         }
 
-       
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.SupplierViewModel> SupplierViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<MyERP.Admin.Models.CountryViewModel> CountryViewModels { get; set; }
+
+
 
         //public System.Data.Entity.DbSet<MyERP.Admin.Models.InvoiceViewModel> InvoiceViewModels { get; set; }
 

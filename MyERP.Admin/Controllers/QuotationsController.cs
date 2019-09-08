@@ -81,7 +81,7 @@ namespace MyERP.Admin.Controllers
             // GET: Quotations/Create
             public ActionResult Create()
             {
-                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName");
                 ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
                 ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
                 return View();
@@ -101,7 +101,7 @@ namespace MyERP.Admin.Controllers
                     return RedirectToAction("Index");
                 }
 
-                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName");
                 ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
                 ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
                 return View(quotation);
@@ -120,7 +120,7 @@ namespace MyERP.Admin.Controllers
                     return HttpNotFound();
                 }
 
-                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName");
                 ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
                 ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
                 return View(quotation);
@@ -139,7 +139,7 @@ namespace MyERP.Admin.Controllers
                     quotationService.Update(entity);
                     return RedirectToAction("Index");
                 }
-                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+                ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName");
                 ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
                 ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
                 return View(quotation);

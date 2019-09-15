@@ -1,25 +1,93 @@
 ﻿@model MyERP.Admin.Models.ReceiptViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Oluştur";
 }
 
-<h2>Create</h2>
+<h2>Oluştur</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>ReceiptViewModel</h4>
+        <h4>Fiş</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.CustomerId, "CustomerId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CustomerId, "Müşteri Adı", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("CustomerId", null, "Müşteri Seçiniz", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+                <br />
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal">Yeni Müşteri</a>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Yeni Müşteri</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label class="col-md-3 control-label"> Adı</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="firstName" name="firstName" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 control-label"> Soyadı</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="lastName" name="lastName" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 control-label">Unvan</label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="titleofCourtesy">
+                                    <option value="0">Yok</option>
+                                    <option value="1">Erkek</option>
+                                    <option value="2">Kadın</option>
+                                    <option value="3">Doktor</option>
+                                    <option value="4">Profesör</option>
+                                    <option value="5">Doçent</option>
+                                    <option value="6">Yardımcı Doçent</option>
+                                    <option value="7">Avukat</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 control-label">Firma Adı</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="contactCompany" name="contactCompany" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 control-label">E-Posta</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="tel" id="contactPosta" name="contactPosta" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-3 control-label">Telefon</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="tel" id="contactPhone" name="contactPhone" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary" onclick="MusteriEkle()">Müşteri Ekle</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -32,7 +100,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BankId, "BankId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BankId, "Banka Adı", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("BankId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BankId, "", new { @class = "text-danger" })
@@ -65,34 +133,48 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CustomerFullName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CustomerFullName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CustomerFullName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BankName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BankName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BankName, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Listeye Geri Dön", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+     function MusteriEkle() {
+         var kisiAdi = $("#firstName").val();
+         var kisiSoyadi = $("#lastName").val();
+         var unvan = $("#titleofCourtesy").val();
+         var firmaAdi =$("#contactCompany").val();
+         var kisieposta =$("#contactPosta").val();
+         var kisitelefon=$("#contactPhone").val();
+
+
+         $.post("@Url.Action("AddCustomer")", { firstName: kisiAdi, lastName: kisiSoyadi, titleofCourtesy: unvan, contactCompany: firmaAdi, contactPosta: kisieposta, contactPhone: kisitelefon }, function (data) {
+            if (data == true) {
+                alert("Müşteri başarıyla eklendi.");
+                $("#exampleModal").modal("hide");
+
+                $.post("@Url.Action("GetCustomers")", null, function (data) {
+                    $("#CustomerId").empty();
+                    $("#CustomerId").append('<option value="">Müşteri Seçiniz</option>');
+                    $.each(data, function (index, value) {
+                        $("#CustomerId").append('<option value="' + value.Id + '">' + value.FullName + '</option>');
+                    });
+
+                });
+
+            }
+        });
+    }
+    </script>
+
 }

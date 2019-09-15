@@ -1,37 +1,21 @@
 ﻿@model MyERP.Admin.Models.OrderViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detaylar";
 }
 
-<h2>Details</h2>
+<h2>Detaylar</h2>
 
 <div>
-    <h4>OrderViewModel</h4>
+    <h4>Siparişler</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Customer.FirstName)
+            @Html.DisplayNameFor(model => model.CustomerFullName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Customer.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Product.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Product.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tax.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tax.Name)
+            @Html.DisplayFor(model => model.CustomerFullName)
         </dd>
 
         <dt>
@@ -57,7 +41,13 @@
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.UnitPrice)
         </dt>
@@ -81,6 +71,13 @@
         <dd>
             @Html.DisplayFor(model => model.Subtotal)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaxName)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.GrandTotal)
@@ -98,33 +95,9 @@
             @Html.DisplayFor(model => model.IsActive)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CustomerFullName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CustomerFullName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TaxName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TaxName)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index")
 </p>

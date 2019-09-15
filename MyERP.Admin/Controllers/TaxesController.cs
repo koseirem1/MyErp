@@ -14,7 +14,7 @@ using MyERP.Service;
 
 namespace MyERP.Admin.Controllers
 {
-   // [Authorize]
+    [Authorize]
     public class TaxesController : Controller
     {
        

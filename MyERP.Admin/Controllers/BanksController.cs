@@ -14,7 +14,8 @@ using MyERP.Service;
 
 namespace MyERP.Admin.Controllers
 {
-   
+    [Authorize]
+
     public class BanksController : Controller
     {
         private readonly ICountryService countryService;

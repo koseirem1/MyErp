@@ -15,6 +15,7 @@ using MyERP.Service;
 
 namespace MyERP.Admin.Controllers
 {
+    [Authorize]
     public class CustomersController : Controller
     {
        

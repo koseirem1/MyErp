@@ -26,6 +26,32 @@ namespace MyERP.Admin.Controllers
             this.customerService = customerService;
             this.bankService = bankService;
         }
+        [HttpPost]
+        public ActionResult AddCustomer(string firstName, string lastName, TitleOfCourtesy titleofCourtesy, string contactCompany, string contactPosta, string contactPhone)
+        {
+            try
+            {
+                var customer = new Customer();
+                customer.FirstName = firstName;
+                customer.LastName = lastName;
+                customer.TitleOfCourtesy = titleofCourtesy;
+                customer.Company = contactCompany;
+                customer.Email = contactPosta;
+                customer.MobilePhone = contactPhone;
+                customerService.Insert(customer);
+                return Json(true);
+            }
+            catch (Exception ex)
+            {
+                return Json(false);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetCustomers()
+        {
+            return Json(Mapper.Map<IEnumerable<CustomerViewModel>>(customerService.GetAll()));
+        }
 
         // GET: Receipts
         public ActionResult Index()
@@ -53,7 +79,7 @@ namespace MyERP.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.BankId = new SelectList(bankService.GetAll(), "Id", "Name");
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName");
             return View();
         }
 
@@ -73,7 +99,7 @@ namespace MyERP.Admin.Controllers
             }
 
             ViewBag.BankId = new SelectList(bankService.GetAll(), "Id", "Name");
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName");
 
             return View(receipt);
         }
@@ -91,7 +117,7 @@ namespace MyERP.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.BankId = new SelectList(bankService.GetAll(), "Id", "Name");
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName");
 
             return View(receipt);
         }
@@ -110,7 +136,7 @@ namespace MyERP.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.BankId = new SelectList(bankService.GetAll(), "Id", "Name");
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName");
 
             return View(receipt);
         }

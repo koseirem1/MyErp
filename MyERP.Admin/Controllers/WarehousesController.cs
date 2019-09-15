@@ -14,6 +14,7 @@ using MyERP.Service;
 
 namespace MyERP.Admin.Controllers
 {
+    [Authorize]
     public class WarehousesController : Controller
     {
         private readonly IWarehouseService warehouseService;

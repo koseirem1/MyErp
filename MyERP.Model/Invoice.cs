@@ -30,8 +30,8 @@ namespace MyERP.Model
         public Guid? TaxId { get; set; }
         public virtual Tax Tax { get; set; }
 
-        public decimal Subtotal { get; set; }
-        public decimal GrandTotal  { get; set; }
+        public decimal? Subtotal { get; set; }
+        public decimal? GrandTotal  { get; set; }
 
        
 

@@ -14,6 +14,7 @@ using MyERP.Service;
 
 namespace MyERP.Admin.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly IOrderService orderService;
@@ -54,7 +55,7 @@ namespace MyERP.Admin.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName");
+            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName");
             ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name");
             ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name");
             return View();
@@ -74,7 +75,7 @@ namespace MyERP.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName", order.CustomerId);
+            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName", order.CustomerId);
             ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name", order.ProductId);
             ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name", order.TaxId);
             return View(order);
@@ -92,7 +93,7 @@ namespace MyERP.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName", order.CustomerId);
+            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName", order.CustomerId);
             ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name", order.ProductId);
             ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name", order.TaxId);
             return View(order);
@@ -111,7 +112,7 @@ namespace MyERP.Admin.Controllers
                 orderService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FirstName", order.CustomerId);
+            ViewBag.CustomerId = new SelectList(customerService.GetAll(), "Id", "FullName", order.CustomerId);
             ViewBag.ProductId = new SelectList(productService.GetAll(), "Id", "Name", order.ProductId);
             ViewBag.TaxId = new SelectList(taxService.GetAll(), "Id", "Name", order.TaxId);
             return View(order);

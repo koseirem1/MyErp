@@ -55,9 +55,9 @@ namespace MyERP.Admin.Models
         public Guid? TaxId { get; set; }
         public virtual Tax Tax { get; set; }
         [Display(Name = "Ara Toplam")]
-        public decimal Subtotal { get; set; }
+        public decimal? Subtotal { get; set; }
         [Display(Name = "Genel Toplam")]
-        public decimal GrandTotal { get; set; }
+        public decimal? GrandTotal { get; set; }
 
         [Display(Name = "Aktif Mi?")]
         public bool IsActive { get; set; }

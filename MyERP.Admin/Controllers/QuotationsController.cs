@@ -14,8 +14,9 @@ using MyERP.Service;
 
 namespace MyERP.Admin.Controllers
 {
-    
-        public class QuotationsController : Controller
+    [Authorize]
+
+    public class QuotationsController : Controller
         {
             private readonly IQuotationService quotationService;
             private readonly ICustomerService customerService;

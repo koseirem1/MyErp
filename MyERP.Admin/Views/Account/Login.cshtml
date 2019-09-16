@@ -1,92 +1,154 @@
 ﻿@using MyERP.Admin.Models
-@using IdentitySample.Models
+
 @model LoginViewModel
 @{
-    ViewBag.Title = "Oturum aç";
+    ViewBag.Title = "Log in";
     Layout = "~/Views/Shared/LoginLayout.cshtml";
 }
+    <section id="loginForm">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
 
-<h2>@ViewBag.Title.</h2>
-<section id="loginForm">
-    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-      
-        <body class="bg-gradient-primary">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+           
+                <div class="container">
 
-            <div class="container">
+                    <!-- Outer Row -->
+                    <div class="row justify-content-center">
 
-                <!-- Outer Row -->
-                <div class="row justify-content-center">
+                        <div class="col-xl-10 col-lg-12 col-md-9">
 
-                    <div class="col-xl-10 col-lg-12 col-md-9">
-
-                        <div class="card o-hidden border-0 shadow-lg my-5">
-                            <div class="card-body p-0">
-                                <!-- Nested Row within Card Body -->
-                                <div class="row">
-                                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                                    <div class="col-lg-6">
-                                        <div class="p-5">
-                                            <div class="text-center">
-                                                <h1 class="h4 text-gray-900 mb-4">Hoşgeldiniz!</h1>
-                                            </div>
-                                            <form class="user">
-                                                <div class="form-group">
-                                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="E-Posta">
+                            <div class="card o-hidden border-0 shadow-lg my-5">
+                                <div class="card-body p-0">
+                                    <!-- Nested Row within Card Body -->
+                                    <div class="row">
+                                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                                        <div class="col-lg-6">
+                                            <div class="p-5">
+                                                <div class="text-center">
+                                                    <h1 class="h4 text-gray-900 mb-4">HOŞGELDİNİZ!</h1>
                                                 </div>
-                                                <div class="form-group">
-                                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Şifre">
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox small">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                        <label class="custom-control-label" for="customCheck">Beni Hatırla</label>
+                                                <form class="login100-form validate-form">
+                                                    <div class="form-group">
+                                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control input100", placeholder = "E-Posta" })
+                                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                                        <span class="focus-input100-1"></span>
+                                                        <span class="focus-input100-2"></span>
                                                     </div>
-                                                </div>
-                                               
-                                                <a href="@Url.Action("Index","Home")" class="btn btn-primary btn-user btn-block">
-            Giriş Yap
-        </a>
+                                                    <div class="form-group">
+                                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control input100", placeholder = "Şifre" })
+                                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                                        <span class="focus-input100-1"></span>
+                                                        <span class="focus-input100-2"></span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="custom-control custom-checkbox small">
+                                                            <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                            <label class="custom-control-label" for="customCheck">Beni Hatırla</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="container-login100-form-btn m-t-20">
+                                                        <button class="login100-form-btn">
+                                                            Giriş
+                                                        </button>
+                                                    </div>
+                                                    <hr>
+                                                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                                                        <i class="fab fa-google fa-fw"></i> Google ile giriş yap
+                                                    </a>
+                                                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                                        <i class="fab fa-facebook-f fa-fw"></i> Facebook ile Giriş yap
+                                                    </a>
+                                                </form>
                                                 <hr>
-                                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                                    <i class="fab fa-google fa-fw"></i> Google ile giriş yap
-                                                </a>
-                                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                                    <i class="fab fa-facebook-f fa-fw"></i> Facebook ile giriş yap
-                                                </a>
-                                            </form>
-                                            <hr>
-                                            <div class="text-center">
-                                                <a class="small" href=@Url.Action("ForgotPassword", "Account")>Şifremi Unutttum?</a>
-                                            </div>
-                                            <div class="text-center">
-                                                <a class="small" href=@Url.Action( "Register","Account")>Yeni Hesap Oluştur!</a>
+                                                <div class="text-center">
+                                                    <a class="small" href="forgot-password.html">Şifremi Unuttum?</a>
+                                                </div>
+                                                <div class="text-center">
+                                                    <a class="small" href="register.html">Hesap Oluştur!</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
                     </div>
 
                 </div>
 
-            </div>
+              
+          
+            @*<div class="limiter">
+                <div class="container-login100">
+                    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+                        <form class="login100-form validate-form">
+                            <span class="login100-form p-b-33">
+                                GİRİŞ
+                            </span>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                            <div class="form-group wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control input100", placeholder = "E-Posta" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                    <span class="focus-input100-1"></span>
+                                    <span class="focus-input100-2"></span>
+                                </div>
+                            </div>
 
-            <!-- Core plugin JavaScript-->
-            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="js/sb-admin-2.min.js"></script>
+                            <div class="form-group wrap-input100 validate-input" data-validate="Password is required">
 
-        </body>
-    }
-</section>
+                                <div class="input-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control input100", placeholder = "Şifre" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    <span class="focus-input100-1"></span>
+                                    <span class="focus-input100-2"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        Beni Hatırla
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container-login100-form-btn m-t-20">
+                                <button class="login100-form-btn">
+                                    Giriş
+                                </button>
+                            </div>
+
+                            <div class="text-center p-t-45 p-b-4">
+
+
+                                @Html.ActionLink("Şifremi Unuttum", "ForgotPassword")
+
+
+                            </div>
+
+                            <div class="text-center">
+                                @Html.ActionLink("Yeni Kayıt Oluştur", "Register")
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>*@
+        }
+    </section>
+
+<div class="col-md-4">
+    <section id="socialLoginForm">
+        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    </section>
+</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
